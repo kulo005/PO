@@ -1,0 +1,34 @@
+{% extends "SZM/base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            {% if products %}
+                 <h1>{{ products.count }} Current product{{ products.count|pluralize }}</h1>
+            {% else %}
+                           <h1>Current products</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if products %}
+            <div class="list-group">
+                {% for product in products %}
+                    <a href="{% url 'viewproduct' product.id %}" class="list-group-item list-group-item-action
+                        {% if product.important %} list-group-item-danger{% endif %}">
+                        <b>{{ product.title }}</b>
+                        {% if product.info %} - {{ product.info|truncatechars:30 }}{% endif %}
+                        - Created {{ product.mydate|date:'M j Y H:i' }}</a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <h2>Looks like you don't have any products!</h2>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'createproduct' %}">Add product</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "SZM/base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <h1>Deleted products</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <div class="list-group">
+                {% for product in products %}
+                    <a href="{% url 'viewproduct' product.id %}" class="list-group-item list-group-item-action{% if product.important %} list-group-item-danger{% endif %}"><b>{{ product.title }}</b>{% if product.info %} - {{ product.info|truncatechars:30 }}{% endif %} - Deleted {{ product.datecompleted|date:'M j Y H:i' }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

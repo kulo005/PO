@@ -1,0 +1,22 @@
+{% extends "SZM/base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <h2>Payment</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <form method="GET">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title"><h3>You have to pay {{ pay }}$</h3></label>
+                </div>
+                    <button type="submit" class="btn btn-primary">Pay</button>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
